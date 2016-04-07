@@ -91,6 +91,7 @@ struct Handler : WebSocket::Handler {
     { for (auto *con : _cons) con->send(msg); }
 };
 </code></pre>
+            <div class="fragment">Demo!</div>
         </section>
         <section>
             <h2>Threading</h2>
@@ -112,6 +113,27 @@ void MyHandler::tick() {
   });
 }
 </code></pre>
+        </section>
+        <section>
+            <h2>Page handlers</h2>
+            <ul>
+                <li>Derive from <code>PageHandler</code></li>
+                <li>Handles GET, POST, PUT, etc</li>
+                <li>Utility classes, <code>CrackedUri</code>, <code>RootPageHandler</code></li>
+                <li>DRW-specific SSO implementation</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Example</h2>
+            TODO: what here?
+        </section>
+        <section>
+            <h2>Conclusions</h2>
+            <ul>
+                <li>Web command & control in C++ is easy!</li>
+                <li><code>seasocks</code> in fig</li>
+                <li><a href="https://github.com/mattgodbolt/seasocks">https://github.com/mattgodbolt/seasocks</a></li>
+            </ul>
         </section>
     </div>
 </div>
