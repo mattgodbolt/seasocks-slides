@@ -53,7 +53,7 @@ int main() {
   auto logger = make_shared&lt;PrintfLogger&gt;(Logger::DEBUG);
   Server server(logger);
 
-  server.serve(".", 9000);
+  server.serve("web", 9000);
 }
 </code></pre>
         </section>
@@ -64,7 +64,7 @@ int main() {
   auto logger = make_shared&lt;PrintfLogger&gt;(Logger::DEBUG);
   Server server(logger);
   <span class="fragment">server.addWebSocketHandler("/", make_shared&lt;Handler&gt;());</span>
-  server.serve(".", 9000);
+  server.serve("web", 9000);
 }
 </code></pre>
         </section>
