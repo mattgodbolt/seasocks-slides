@@ -63,7 +63,7 @@ int main() {
 int main() {
   auto logger = make_shared&lt;PrintfLogger&gt;(Logger::DEBUG);
   Server server(logger);
-  <span class="fragment">server.addWebSocketHandler("/", make_shared&lt;Handler&gt;());</span>
+  <span class="fragment">server.addWebSocketHandler("/chat", make_shared&lt;Handler&gt;());</span>
   server.serve("web", 9000);
 }
 </code></pre>
@@ -125,13 +125,12 @@ void MyHandler::tick() {
         </section>
         <section>
             <h2>Example</h2>
-            TODO: what here?
         </section>
         <section>
             <h2>Conclusions</h2>
             <ul>
                 <li>Web command & control in C++ is easy!</li>
-                <li><code>seasocks</code> in fig</li>
+                <li><code>seasocks</code> &amp; <code>seasocks-sso</code> in fig</li>
                 <li><a href="https://github.com/mattgodbolt/seasocks">https://github.com/mattgodbolt/seasocks</a></li>
             </ul>
         </section>
