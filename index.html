@@ -21,6 +21,18 @@
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
 
+    <style>
+        .reveal .slides section .fragment.highlight-current-bg {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .reveal .slides section .fragment.highlight-current-bg.current-fragment {
+            background-color: #883333;
+        }
+
+    </style>
+
     <!-- Printing and PDF exports -->
     <script>
         var link = document.createElement('link');
@@ -48,7 +60,7 @@
         </section>
         <section>
             <h2>How?</h2>
-<pre><code class="cpp" data-trim>
+            <pre><code class="cpp" data-trim>
 int main() {
   auto logger = make_shared&lt;PrintfLogger&gt;(Logger::DEBUG);
   Server server(logger);
@@ -59,37 +71,37 @@ int main() {
         </section>
         <section>
             <h2>Websockets</h2>
-<pre><code class="cpp" data-trim data-noescape>
+            <pre><code class="cpp" data-trim data-noescape>
 int main() {
   auto logger = make_shared&lt;PrintfLogger&gt;(Logger::DEBUG);
   Server server(logger);
-  <span class="fragment">server.addWebSocketHandler("/chat", make_shared&lt;Handler&gt;());</span>
+<span class="fragment highlight-current-bg">  server.addWebSocketHandler("/chat", make_shared&lt;Handler&gt;());</span>
   server.serve("web", 9000);
 }
 </code></pre>
         </section>
         <section>
             <h2>Websockets</h2>
-<pre><code class="cpp" data-trim data-noescape>
+            <pre><code class="cpp" data-trim data-noescape>
 struct Handler : WebSocket::Handler {
-  unordered_set&lt;WebSocket *&gt; _cons;
+<span class="fragment highlight-current-bg">  unordered_set&lt;WebSocket *&gt; _cons;</span>
 
-  void onConnect(WebSocket *con) override {
+<span class="fragment highlight-current-bg">  void onConnect(WebSocket *con) override {
     _cons.emplace(con);
     send(con->credentials()->username + " has joined");
   }
-
-  void onDisconnect(WebSocket *con) override {
+</span>
+<span class="fragment highlight-current-bg">  void onDisconnect(WebSocket *con) override {
     _cons.erase(con);
     send(con->credentials()->username + " has left");
   }
-
-  void onData(WebSocket *con, const char *data) override
+</span>
+<span class="fragment highlight-current-bg">  void onData(WebSocket *con, const char *data) override
     { send(con->credentials()->username + ": " + data); }
-
-  void send(string msg)
+</span>
+<span class="fragment highlight-current-bg">  void send(string msg)
     { for (auto *con : _cons) con->send(msg); }
-};
+</span>};
 </code></pre>
             <div class="fragment">Demo!</div>
         </section>
@@ -152,26 +164,26 @@ void MyHandler::tick() {
         dependencies: [
             {
                 src: 'lib/js/classList.js', condition: function () {
-                return !document.body.classList;
-            }
+                    return !document.body.classList;
+                }
             },
             {
                 src: 'plugin/markdown/marked.js', condition: function () {
-                return !!document.querySelector('[data-markdown]');
-            }
+                    return !!document.querySelector('[data-markdown]');
+                }
             },
             {
                 src: 'plugin/markdown/markdown.js', condition: function () {
-                return !!document.querySelector('[data-markdown]');
-            }
+                    return !!document.querySelector('[data-markdown]');
+                }
             },
             {
                 src: 'plugin/highlight/highlight.js', async: true, condition: function () {
-                return !!document.querySelector('pre code');
-            }, callback: function () {
-                hljs.initHighlightingOnLoad();
-                hljs.registerLanguage("ccs", ccs);
-            }
+                    return !!document.querySelector('pre code');
+                }, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                    hljs.registerLanguage("ccs", ccs);
+                }
             },
             {src: 'plugin/zoom-js/zoom.js', async: true},
             {src: 'plugin/notes/notes.js', async: true}
